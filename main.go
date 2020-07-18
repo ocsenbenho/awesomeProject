@@ -2,7 +2,6 @@ package main
 
 import (
 	"awesomeProject/db"
-	"awesomeProject/handler"
 	"github.com/labstack/echo/v4"
 	log "github.com/sirupsen/logrus"
 	"runtime"
@@ -21,16 +20,13 @@ func main() {
 	logErr("co loi xay ra !")
 
 	e := echo.New()
-	e.GET("/", handler.Welcome)
-	e.GET("/user/sign-in", handler.HandleSignIn)
-	e.GET("/user/sign-up", handler.HandleSignUp)
+
 	e.Logger.Fatal(e.Start(":8000"))
 }
-func logErr(errMsg string){
-	_, file, line,_ := runtime.Caller(1)
+func logErr(errMsg string) {
+	_, file, line, _ := runtime.Caller(1)
 	log.WithFields(log.Fields{
 		"file": file,
 		"line": line,
-
 	}).Error(errMsg)
 }
